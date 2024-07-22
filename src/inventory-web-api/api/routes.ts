@@ -8,6 +8,8 @@ import { Request, Response, Router } from 'express';
 
  import authRoute from '../../inventory-auth/api/routes';
  import categoryRoute from '../../inventory-category/api/routes';
+ import brandRoute from '../../inventory-brand/api/routes';
+
 
 
 
@@ -21,6 +23,7 @@ router.get('/health-check', (_req: Request, res: Response) =>
 
 router.use('/auth', authRoute);
 router.use('/category', categoryRoute);
+router.use('/brand', brandRoute);
 
  
 export default router;
