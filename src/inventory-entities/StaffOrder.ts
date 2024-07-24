@@ -1,6 +1,6 @@
 import { ObjectId } from 'mongodb'
 import {Schema, Document, model} from 'mongoose'
-import { ItemsInStock, ItemsNotInStock } from '../types/user';
+import { ItemsInStock, ItemsNotInStock, Units } from '../types/user';
 import { ModelNames } from './models.names';
 
 // staffID: ObjectId;
@@ -17,17 +17,17 @@ export class StaffOrder extends Document {
 
 export const StaffOrderSchema = new Schema(
     {
-        staffID: {type: ObjectId, ref: ModelNames.USER},
+        staffID: {type: ObjectId, required: true, ref: ModelNames.USER},
         department: {type: String, required: true},
         inStock: [{
-            productID: {type: ObjectId, ref: ModelNames.PRODUCT},
-            quantity: {type: Number, required: true},
-            unit: {type: String, required: true}
+            productID: {type: ObjectId,required: true, ref: ModelNames.PRODUCT},
+            quantity: {type: Number, required: true, default: 1},
+            unit: {type: String, enum: [Units.UNIT, Units.CARTONS, Units.GALLONS, Units.PACK, Units.PIECES, Units.RIMS], default: Units.UNIT, required: true},
         }],
         notInStock: [{
             productName: {type: String},
             quantity: {type: Number},
-            unit: {type: String}
+            unit: {type: String, enum: [Units.UNIT, Units.CARTONS, Units.GALLONS, Units.PACK, Units.PIECES, Units.RIMS], default: Units.UNIT},
         }]
     }
 )
