@@ -12,7 +12,7 @@ export const CategoryService = async ({userID, name, parent}: CategoryDTO) => {
     const catNameExist = await CategoryModel.findOne({name})
     if(catNameExist) return {success: true, status: httpStatus.OK, message: `category name already exist`, data: catNameExist}
 
-    const newCategory = await CategoryModel.create({name, parent});
+    const newCategory = await CategoryModel.create({userID, name, parent});
     return {success: true, status: httpStatus.OK, message: `Category name created!`, data: newCategory};
 
 }
