@@ -12,7 +12,7 @@ export const BrandService = async ({userID, name}: BrandDTO) => {
     const brandNameExist = await BrandModel.findOne({name})
     if(brandNameExist) return {success: true, status: httpStatus.OK, message: `brand name already exist`, data: brandNameExist}
 
-    const newBrand = await BrandModel.create({name});
+    const newBrand = await BrandModel.create({userID, name});
     return {success: true, status: httpStatus.OK, message: `Brand name created!`, data: newBrand};
 
 }
