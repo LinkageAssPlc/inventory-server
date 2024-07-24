@@ -12,7 +12,7 @@ export const ProductService = async ({userID, name}: ProductDTO) => {
     const productNameExist = await ProductModel.findOne({name})
     if(productNameExist) return {success: true, status: httpStatus.OK, message: `Product name already exist`, data: productNameExist}
 
-    const newProduct = await ProductModel.create({name});
+    const newProduct = await ProductModel.create({userID, name});
     return {success: true, status: httpStatus.OK, message: `Product name created!`, data: newProduct};
 
 }
