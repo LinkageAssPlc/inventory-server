@@ -43,15 +43,6 @@ export const NewStockService = async ({userID, itemList}: NewStockDTO) => {
         )
     )
 
-    // const productExist = await ProductModel.find({_id: productID})
-    // if(!productExist) return {success: false, status: httpStatus.NOT_FOUND, message: `Product doesn't exist`, data: productExist}
-
-    // const categoryExist = await CategoryModel.find({_id: categoryID})
-    // if(!categoryExist) return {success: true, status: httpStatus.NOT_FOUND, message: `Category doesn't exist`, data: categoryExist}
-
-    // const brandExist = await BrandModel.find({_id: brandID})
-    // if(!brandExist) return {success: true, status: httpStatus.NOT_FOUND, message: `Brand doesn't exist`, data: brandExist}
-
     if (shouldError) return {success: false, status: httpStatus.BAD_REQUEST, message: `invalid stock items`, data: errors};
     
 
