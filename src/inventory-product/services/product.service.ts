@@ -1,11 +1,11 @@
 import httpStatus from "http-status";
 
-import { ProductDTO } from "../DTOs/ProductDTO";
+import { AddProductDTO } from "../DTOs/ProductDTO";
 import { getUser } from "../../inventory-accounts/user/services";
 import { ProductModel } from "../../inventory-entities/Product";
 
 
-export const ProductService = async ({userID, name}: ProductDTO) => {
+export const AddProductService = async ({userID, name}: AddProductDTO) => {
     const user = await getUser({userID});
     if(!user) return {success: false, status: httpStatus.NOT_FOUND, message: `user not found`, data: null}
 

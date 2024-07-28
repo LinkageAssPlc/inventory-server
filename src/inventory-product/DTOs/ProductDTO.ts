@@ -1,7 +1,7 @@
 import { ObjectId } from "mongodb";
 
 
-export type ProductDTO = {
+export type AddProductDTO = {
     userID: ObjectId;
-    name: String;
+    name: string;
 }
