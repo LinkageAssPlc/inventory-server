@@ -1,11 +1,11 @@
 import httpStatus from "http-status";
 
-import { CategoryDTO } from "../DTOs/CategoryDTO";
+import { AddCategoryDTO } from "../DTOs/CategoryDTO";
 import { getUser } from "../../inventory-accounts/user/services";
 import { CategoryModel } from "../../inventory-entities/Category";
 
 
-export const CategoryService = async ({userID, name, parent}: CategoryDTO) => {
+export const AddCategoryService = async ({userID, name, parent}: AddCategoryDTO) => {
     const user = await getUser({userID});
     if(!user) return {success: false, status: httpStatus.NOT_FOUND, message: `user not found`, data: null}
 

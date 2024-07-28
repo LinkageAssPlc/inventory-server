@@ -1,8 +1,8 @@
 import { ObjectId } from "mongodb";
 
 
-export type CategoryDTO = {
+export type AddCategoryDTO = {
     userID: ObjectId;
-    name: String;
-    parent: String;
+    name: string;
+    parent: string;
 }
