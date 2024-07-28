@@ -11,6 +11,7 @@ import { ModelNames } from './models.names';
 export class StaffOrder extends Document {
     staffID: ObjectId;
     department: string;
+    branch: string;
     inStock: ItemsInStock[]
     notInStock: ItemsNotInStock[]
 }
@@ -19,6 +20,7 @@ export const StaffOrderSchema = new Schema(
     {
         staffID: {type: ObjectId, required: true, ref: ModelNames.USER},
         department: {type: String, required: true},
+        branch: {type: String, required: true},
         inStock: [{
             productID: {type: ObjectId,required: true, ref: ModelNames.PRODUCT},
             quantity: {type: Number, required: true, default: 1},
