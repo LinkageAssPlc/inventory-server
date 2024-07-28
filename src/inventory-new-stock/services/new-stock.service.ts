@@ -1,6 +1,6 @@
 import httpStatus from "http-status";
 
-import { NewStockDTO } from "../DTOs/NewStockDTO";
+import { AddNewStockDTO } from "../DTOs/NewStockDTO";
 import { getUser } from "../../inventory-accounts/user/services";
 import { NewStockModel } from "../../inventory-entities/NewStock";
 import { ProductModel } from "../../inventory-entities/Product";
@@ -9,7 +9,7 @@ import { BrandModel } from "../../inventory-entities/Brand";
 import { Brand, Category, Product } from "../../types/user";
 
 
-export const NewStockService = async ({userID, itemList}: NewStockDTO) => {
+export const AddNewStockService = async ({userID, itemList}: AddNewStockDTO) => {
     const user = await getUser({userID});
     if (!user) return {success: false, status: httpStatus.NOT_FOUND, message: `user not found`, data: null}
 
@@ -24,10 +24,7 @@ export const NewStockService = async ({userID, itemList}: NewStockDTO) => {
                 const productExist = await ProductModel.findById(item.productID) as Product
                 const categoryExist = await CategoryModel.findById(item.categoryID) as Category
                 const brandExist = await BrandModel.findById(item.brandID) as Brand
-            
-                if (!productExist || !categoryExist || !brandExist) {
-                    shouldError = true;
-                }
+
             
                 if (!productExist ) {
                     errors.push(`ProductID of item ${index} is invalid`)

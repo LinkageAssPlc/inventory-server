@@ -2,7 +2,7 @@ import { ObjectId } from "mongodb";
 import { Units } from "../../types/user";
 
 
-export type NewStockDTO = {
+export type AddNewStockDTO = {
     userID: ObjectId;
     itemList: {
         productID: ObjectId;
