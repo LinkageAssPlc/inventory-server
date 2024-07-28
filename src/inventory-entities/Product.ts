@@ -10,6 +10,9 @@ export class Product extends Document {
 export const ProductSchema  = new Schema (
     {
         name: {type: String, required: true, trim: true},
+    },
+    {
+        timestamps: true
     }
 )
 
