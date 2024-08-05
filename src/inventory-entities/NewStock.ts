@@ -1,37 +1,34 @@
 import {Schema, Document, model} from 'mongoose'
+import {ObjectId} from 'mongodb'
 import { ModelNames } from './models.names';
 
-// itemList: {
-//     name: string;
-//     category: string;
-//     brand: string;
-//     quantity: number;
-//     price: number;
-//     unit: string
-//   }[]
+import { Units } from '../types/user';
+
 
 export class NewStock extends Document {
+    userID: ObjectId;
     itemList: {
-        name: string;
-        category: string;
-        brand: string;
+        productID: ObjectId;
+        categoryID: ObjectId;
+        brandID: ObjectId;
         quantity: number;
         price: number;
-        unit: string;
+        unit: Units;
         isInStock: boolean 
-    }
+    }[]
 }
 
 export const NewStockSchema = new Schema(
     {
+        userID: {type: ObjectId, required: true, ref: ModelNames.USER},
         itemList: [{
-            name: {type: String, required: true, trim: true},
-            category: {type: String, required: true},
-            brand: {type: String, required: true},
-            quantity: {type: String, required: true},
+            productID: {type: ObjectId, required: true, ref: ModelNames.PRODUCT},
+            categoryID: {type: ObjectId, required: true, ref: ModelNames.CATEGORY},
+            brandID: {type: ObjectId, required: true, ref: ModelNames.BRAND},
+            quantity: {type: Number, required: true},
             price: {type: Number, required: true},
-            unit: {type: String, required: true},
-            isInStock: {type: Boolean, default: false}
+            unit: {type: String, enum: [Units.UNIT, Units.CARTONS, Units.GALLONS, Units.PACK, Units.PIECES, Units.RIMS], default: Units.UNIT, required: true},
+            isInStock: {type: Boolean, default: true}
         }],
     }
 )

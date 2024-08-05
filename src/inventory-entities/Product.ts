@@ -13,6 +13,9 @@ export const ProductSchema  = new Schema (
     {
         userID: {type: ObjectId, required: true, ref: ModelNames.USER},
         name: {type: String, required: true, trim: true},
+    },
+    {
+        timestamps: true
     }
 )
 

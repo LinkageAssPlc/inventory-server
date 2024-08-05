@@ -38,15 +38,24 @@ export type Product = {
   name: string; 
 }
 
+export enum Units {
+  UNIT = "unit(s)",
+  PIECES = "pcs",
+  GALLONS = "gallon(s)",
+  RIMS = "rim(s)",
+  CARTONS = "carton(s)",
+  PACK = "pack(s)"
+}
+
 export type NewStock = {
   itemList: {
-    name: string;
-    category: string;
-    brand: string;
+    productID: ObjectId;
+    categoryID: ObjectId;
+    brandID: ObjectId;
     quantity: number;
     price: number;
-    unit: string;
-    isInStock: true;
+    unit: Units;
+    isInStock: boolean;
   }[]
 }
 
