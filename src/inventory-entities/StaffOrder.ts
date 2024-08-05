@@ -3,10 +3,6 @@ import {Schema, Document, model} from 'mongoose'
 import { ItemsInStock, ItemsNotInStock, Units } from '../types/user';
 import { ModelNames } from './models.names';
 
-// staffID: ObjectId;
-//   departmentID: ObjectId;
-//   inStock: ItemsInStock[];
-//   notInStock: ItemsNotInStock[];
 
 export class StaffOrder extends Document {
     staffID: ObjectId;
@@ -31,6 +27,9 @@ export const StaffOrderSchema = new Schema(
             quantity: {type: Number},
             unit: {type: String, enum: [Units.UNIT, Units.CARTONS, Units.GALLONS, Units.PACK, Units.PIECES, Units.RIMS], default: Units.UNIT},
         }]
+    },
+    {
+        timestamps: true
     }
 )
 
