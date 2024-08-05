@@ -27,10 +27,14 @@ export const NewStockSchema = new Schema(
             brandID: {type: ObjectId, required: true, ref: ModelNames.BRAND},
             quantity: {type: String, required: true},
             price: {type: Number, required: true},
-            unit: {type: String, enum: [Units.UNIT, Units.CARTONS, Units.GALLONS, Units.PACK, Units.PIECES, Units.RIMS], default: Units.UNIT, required: true},
+            unit: {type: String, enum: [Units.UNIT, Units.CARTONS, Units.GALLONS, Units.PACK, Units.PIECES, Units.RIMS, Units.BOOKLET], default: Units.UNIT, required: true},
             isInStock: {type: Boolean, default: true}
         }],
+    },
+    {
+        timestamps: true
     }
+
 )
 
 export const NewStockModel = model<NewStock>(ModelNames.NEWSTOCK, NewStockSchema)

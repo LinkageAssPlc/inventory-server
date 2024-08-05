@@ -1,18 +1,16 @@
 import { Types } from "mongoose";
 import { Request } from "express";
 
-import { CategoryDTO } from "../../DTOs/CategoryDTO";
-import { CategoryService } from "../../services";
+import { AddCategoryDTO } from "../../DTOs/CategoryDTO";
+import { AddCategoryService } from "../../services";
 import { BaseController } from "../../../inventory-shared/api";
 
 
 export class CategoryController{
-    static category = BaseController(async (request: Request) => {
-        const CategoryDTO = request.body as CategoryDTO;
-        console.log(CategoryDTO)
+    static addCategory = BaseController(async (request: Request) => {
+        const CategoryDTO = request.body as AddCategoryDTO;
         CategoryDTO.userID = new Types.ObjectId(request.token._id);
-        console.log(CategoryDTO.userID);
-        const{status, message, data} = await CategoryService(CategoryDTO)
+        const{status, message, data} = await AddCategoryService(CategoryDTO)
         return {status, message, data};
     })
 }

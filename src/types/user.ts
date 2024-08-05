@@ -26,15 +26,18 @@ export type MetaUser = {
 };
 
 export type Category = {
+  userID: ObjectId;
   name: string;
   parent: string;
 }
 
 export type Brand = {
+  userID: ObjectId;
   name: string;
 }
 
 export type Product = {
+  userID: ObjectId;
   name: string; 
 }
 

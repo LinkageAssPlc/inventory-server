@@ -20,12 +20,12 @@ export const StaffOrderSchema = new Schema(
         inStock: [{
             productID: {type: ObjectId,required: true, ref: ModelNames.PRODUCT},
             quantity: {type: Number, required: true, default: 1},
-            unit: {type: String, enum: [Units.UNIT, Units.CARTONS, Units.GALLONS, Units.PACK, Units.PIECES, Units.RIMS], default: Units.UNIT, required: true},
+            unit: {type: String, enum: [Units.UNIT, Units.CARTONS, Units.GALLONS, Units.PACK, Units.PIECES, Units.RIMS, Units.BOOKLET], default: Units.UNIT, required: true},
         }],
         notInStock: [{
             productName: {type: String},
             quantity: {type: Number},
-            unit: {type: String, enum: [Units.UNIT, Units.CARTONS, Units.GALLONS, Units.PACK, Units.PIECES, Units.RIMS], default: Units.UNIT},
+            unit: {type: String, enum: [Units.UNIT, Units.CARTONS, Units.GALLONS, Units.PACK, Units.PIECES, Units.RIMS, Units.BOOKLET], default: Units.UNIT},
         }]
     },
     {
