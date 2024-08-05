@@ -3,9 +3,15 @@ import { Joi } from "celebrate";
 import { Units } from "../../../types/user";
 import { toObjectId } from "../../../inventory-shared/validateAndConvertToObjectID";
 
+// staffID: ObjectId;
+//   department: String;
+//   branch: string;
+//   inStock: ItemsInStock[];
+//   notInStock: ItemsNotInStock[];
+
 
 export default{
-    newStock: {
+    staffOrder: {
         body: Joi.object({
             itemList: Joi.array().items(
                 Joi.object({
