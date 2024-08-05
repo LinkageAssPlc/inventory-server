@@ -48,6 +48,7 @@ export enum Units {
   RIMS = "rim(s)",
   CARTONS = "carton(s)",
   PACK = "pack(s)",
+  BOOKLET = "booklet(s)"
 }
 
 export type NewStock = {

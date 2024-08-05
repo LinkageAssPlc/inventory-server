@@ -10,6 +10,7 @@ import { toObjectId } from "../../../inventory-shared/validateAndConvertToObject
 //   notInStock: ItemsNotInStock[];
 
 
+
 export default{
     staffOrder: {
         body: Joi.object({
@@ -20,6 +21,7 @@ export default{
                 Joi.object({
                     productID: Joi.string().min(24).max(24).custom(toObjectId),
                     quantity: Joi.number().required(),
+                    unit: Joi.string().allow(Units.UNIT, Units.CARTONS, Units.GALLONS, Units.PACK, Units.PIECES, Units.RIMS, Units.BOOKLET).required(),
                 })
             ),
             
