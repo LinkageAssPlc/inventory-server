@@ -2,10 +2,7 @@ import httpStatus from "http-status";
 
 import { StaffOrderDTO } from "../DTOs/StaffOrderDTO";
 import { getUser } from "../../inventory-accounts/user/services";
-import { NewStockModel } from "../../inventory-entities/NewStock";
-import { ProductModel } from "../../inventory-entities/Product";
-import { CategoryModel } from "../../inventory-entities/Category";
-import { BrandModel } from "../../inventory-entities/Brand";
+
 
 
 export const StaffOrderService = async ({staffID, department, branch, inStock, notInStock}: StaffOrderDTO) => {
@@ -15,33 +12,11 @@ export const StaffOrderService = async ({staffID, department, branch, inStock, n
     let shouldError = false;
     let errors: any = [];
 
-    // await Promise.all(
-    //     itemList.map(
-    //         async(item, index) => {
-    //             const productExist = await ProductModel.find({_id: item.productID})
-    //             const categoryExist = await CategoryModel.find({_id: item.categoryID})
-    //             const brandExist = await BrandModel.find({_id: item.brandID})
+    //get product names only based if quantity in >= 1 //to be fetched from newStock
+    //get the quantity
+    //get units
 
-    //             if (!productExist || !categoryExist || !brandExist) {
-    //                 shouldError = true;
-    //             }
 
-    //             if (!productExist[index]) {
-    //                 errors.push(`ProductID of item ${index} is invalid or empty`)
-    //                 shouldError = true;
-
-    //             } else if (!categoryExist[index]) {
-    //                 errors.push(`CategoryID of item ${index} is invalid or empty`)
-    //                 shouldError = true;
-
-    //             } else if (!brandExist[index]) {
-    //                 errors.push(`BrandID of item ${index} is invalid or empty`)
-    //                 shouldError = true;
-
-    //             }
-    //         }
-    //     )
-    // )
 
     
 
