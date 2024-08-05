@@ -23,6 +23,7 @@ export type MetaUser = {
 };
 
 export type Category = {
+  userID: ObjectId;
   name: string;
   parent: string;
 }

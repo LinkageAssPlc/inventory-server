@@ -1,5 +1,4 @@
 import { User } from "./User";
-import { Media } from "./Media";
 import { General } from "./General"; //
 import { Brand } from "./Brand"; //
 import { Category } from "./Category";
@@ -10,7 +9,6 @@ import { StaffOrder } from "./StaffOrder";
 
 export enum ModelNames {
     USER = 'user',    
-    MEDIA = 'media',    
     GENERAL = 'general',  
     BRAND = 'brand',  
     CATEGORY = 'category',  
@@ -21,7 +19,6 @@ export enum ModelNames {
 
 export type ModelTypeMap = {
     [ModelNames.USER]: User,
-    [ModelNames.MEDIA]: Media,
     [ModelNames.GENERAL]: General,
     [ModelNames.BRAND]: Brand,
     [ModelNames.CATEGORY]: Category,
