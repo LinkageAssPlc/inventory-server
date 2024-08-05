@@ -29,6 +29,7 @@ export type Category = {
 }
 
 export type Brand = {
+  userID: ObjectId;
   name: string;
 }
 

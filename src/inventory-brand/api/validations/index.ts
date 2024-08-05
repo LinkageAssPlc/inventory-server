@@ -2,10 +2,9 @@ import { Joi } from "celebrate";
 
 
 export default{
-    category: {
+    brand: {
         body: Joi.object({
             name: Joi.string().min(2).max(24).required(),
-            parent: Joi.string().min(2).max(24).required()
         })
     }
 }
