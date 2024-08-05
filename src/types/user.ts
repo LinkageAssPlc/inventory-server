@@ -34,6 +34,7 @@ export type Brand = {
 }
 
 export type Product = {
+  userID: ObjectId;
   name: string; 
 }
 
