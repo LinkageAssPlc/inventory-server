@@ -1,5 +1,8 @@
 import { ObjectId } from "mongodb";
 
+//Parent(Hardware) -> Category(Laptop) -> Brand(HP) -> Product(HP 450 G6)
+//oil-> engine oil -> Total -> Total Classic
+
 export enum Role {
   USER = 'user',
   ADMIN = 'admin'
@@ -62,25 +65,27 @@ export type NewStock = {
 export type ItemsInStock = {
   productID: string;
   quantity: number;
-  unit: string 
+  unit: Units;
 }
 
 export type ItemsNotInStock = {
   productName: string;
   quantity: number; 
-  unit: string;
+  unit: Units;
 }
 
 export type StaffOrder = {
   staffID: ObjectId;
-  departmentID: ObjectId;
+  department: String;
+  branch: string;
   inStock: ItemsInStock[];
   notInStock: ItemsNotInStock[];
 }
 
 export type StaffRequest = {
   staffID: ObjectId;
-  departmentID: ObjectId;
+  department: String;
+  branch: string;
   list: StaffOrder[];
   quantityIssued: number;
   requestMode: string;
