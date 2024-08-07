@@ -6,6 +6,6 @@ import { AuthMiddleware } from "../../../inventory-auth/middlewares/authMiddlewa
 
 const {POST, router} = baseRouter();
 
-POST("/", [baseValidation(ProductValidation.staffOrder), AuthMiddleware.baseAuthToken, AuthMiddleware.IsUserMiddleware, StaffOrderController.staffOrder]);
+POST("/", [baseValidation(ProductValidation.addStaffOrder), AuthMiddleware.baseAuthToken, AuthMiddleware.IsUserMiddleware, StaffOrderController.addStaffOrder]);
 
 export default router;

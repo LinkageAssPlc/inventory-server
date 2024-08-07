@@ -11,6 +11,7 @@ import { Request, Response, Router } from 'express';
  import brandRoute from '../../inventory-brand/api/routes';
  import productRoute from '../../inventory-product/api/routes';
  import newStockRoute from '../../inventory-new-stock/api/routes';
+ import staffOrderRoute from '../../inventory-staff-order/api/routes';
 
 
 
@@ -28,6 +29,7 @@ router.use('/category', categoryRoute);
 router.use('/brand', brandRoute);
 router.use('/product', productRoute);
 router.use('/new-stock', newStockRoute);
+router.use('/staff-order', staffOrderRoute);
 
  
 export default router;

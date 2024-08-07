@@ -1,16 +1,16 @@
 import { Types } from "mongoose";
 import { Request } from "express";
 
-import { StaffOrderDTO } from "../../DTOs/StaffOrderDTO";
-import { StaffOrderService } from "../../services";
+import { AddStaffOrderDTO } from "../../DTOs/StaffOrderDTO";
+import { AddStaffOrderService } from "../../services";
 import { BaseController } from "../../../inventory-shared/api";
 
 
 export class StaffOrderController{
-    static staffOrder = BaseController(async (request: Request) => {
-        const StaffOrderDTO = request.body as StaffOrderDTO;
-        StaffOrderDTO.staffID = new Types.ObjectId(request.token._id);
-        const {status, message, data} = await StaffOrderService(StaffOrderDTO)
+    static addStaffOrder = BaseController(async (request: Request) => {
+        const AddStaffOrderDTO = request.body as AddStaffOrderDTO;
+        AddStaffOrderDTO.staffID = new Types.ObjectId(request.token._id);
+        const {status, message, data} = await AddStaffOrderService(AddStaffOrderDTO)
         return {status, message, data};
     })
 }
