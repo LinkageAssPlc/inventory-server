@@ -7,6 +7,7 @@ import { ProductModel } from "../../inventory-entities/Product";
 import { CategoryModel } from "../../inventory-entities/Category";
 import { BrandModel } from "../../inventory-entities/Brand";
 import { Brand, Category, Product } from "../../types/user";
+import { AddAllMongoDBFields } from "../../inventory-entities";
 
 
 export const AddNewStockService = async ({userID, itemList}: AddNewStockDTO) => {
@@ -18,14 +19,14 @@ export const AddNewStockService = async ({userID, itemList}: AddNewStockDTO) => 
 
     // let product: Product;
 
-    await Promise.all(
+     const products = await Promise.all(
         itemList.map(
             async(item, index) => {
                 const productExist = await ProductModel.findById(item.productID) as Product
                 const categoryExist = await CategoryModel.findById(item.categoryID) as Category
                 const brandExist = await BrandModel.findById(item.brandID) as Brand
 
-            
+                    console.log(productExist)
                 if (!productExist ) {
                     errors.push(`ProductID of item ${index} is invalid`)
                     shouldError = true;
@@ -41,10 +42,28 @@ export const AddNewStockService = async ({userID, itemList}: AddNewStockDTO) => 
                     errors.push(`BrandID of item ${index} is invalid`)
                     shouldError = true;
                 }
+               
+                // if (itemList.indexOf(item) != index) {
+                //     errors.push(`You can't input same product name twice`)
+                // }
+
+                return productExist as AddAllMongoDBFields<Product>
 
             }
         )
-    )
+    ) 
+
+    const valueArr = products.map((product) => product._id.toString() )
+    const isDuplicate = valueArr.some((product, idx) => {
+        return (valueArr.indexOf(product) != idx)
+    })
+    console.log(isDuplicate)
+
+
+    if (isDuplicate) {
+        errors.push("Sorry, product name has already been selected")
+        shouldError = true;
+    }
 
     if (shouldError) return {success: false, status: httpStatus.BAD_REQUEST, message: `invalid stock items`, data: errors};
     
