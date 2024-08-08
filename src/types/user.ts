@@ -77,7 +77,7 @@ export type ItemsNotInStock = {
 
 export type StaffOrder = {
   staffID: ObjectId;
-  department: String;
+  department: string;
   branch: string;
   inStock: ItemsInStock[];
   notInStock: ItemsNotInStock[];
@@ -85,7 +85,7 @@ export type StaffOrder = {
 
 export type StaffRequest = {
   staffID: ObjectId;
-  department: String;
+  department: string;
   branch: string;
   list: StaffOrder[];
   quantityIssued: number;

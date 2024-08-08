@@ -12,7 +12,7 @@ import { toObjectId } from "../../../inventory-shared/validateAndConvertToObject
 
 
 export default{
-    staffOrder: {
+    addStaffOrder: {
         body: Joi.object({
             staffID: Joi.string().required().min(24).max(24).custom(toObjectId),
             department: Joi.string().required(),
@@ -24,6 +24,13 @@ export default{
                     unit: Joi.string().allow(Units.UNIT, Units.CARTONS, Units.GALLONS, Units.PACK, Units.PIECES, Units.RIMS, Units.BOOKLET).required(),
                 })
             ),
+            notInStock: Joi.array().items(
+                Joi.object({
+                    productName: Joi.string(),
+                    quantity: Joi.number(),
+                    unit: Joi.string().allow(Units.UNIT, Units.CARTONS, Units.GALLONS, Units.PACK, Units.PIECES, Units.RIMS, Units.BOOKLET)
+                })
+            )
             
         })
     }
