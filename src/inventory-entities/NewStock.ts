@@ -25,7 +25,7 @@ export const NewStockSchema = new Schema(
             productID: {type: ObjectId, required: true, ref: ModelNames.PRODUCT},
             categoryID: {type: ObjectId, required: true, ref: ModelNames.CATEGORY},
             brandID: {type: ObjectId, required: true, ref: ModelNames.BRAND},
-            quantity: {type: String, required: true},
+            quantity: {type: Number, required: true},
             price: {type: Number, required: true},
             unit: {type: String, enum: [Units.UNIT, Units.CARTONS, Units.GALLONS, Units.PACK, Units.PIECES, Units.RIMS], default: Units.UNIT, required: true},
             isInStock: {type: Boolean, default: true}
