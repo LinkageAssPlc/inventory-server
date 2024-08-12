@@ -28,7 +28,13 @@ export type MetaUser = {
 export type Category = {
   userID: ObjectId;
   name: string;
-  parent: string;
+}
+
+
+export type SubCategory = {
+  userID: ObjectId;
+  categoryID: ObjectId;
+  name: string;
 }
 
 export type Brand = {
