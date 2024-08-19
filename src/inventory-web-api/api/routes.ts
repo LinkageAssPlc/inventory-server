@@ -8,6 +8,7 @@ import { Request, Response, Router } from 'express';
 
  import authRoute from '../../inventory-auth/api/routes';
  import categoryRoute from '../../inventory-category/api/routes';
+ import subCategoryRoute from '../../inventory-subcategory/api/routes';
  import brandRoute from '../../inventory-brand/api/routes';
  import productRoute from '../../inventory-product/api/routes';
  import newStockRoute from '../../inventory-new-stock/api/routes';
@@ -26,6 +27,7 @@ router.get('/health-check', (_req: Request, res: Response) =>
 
 router.use('/auth', authRoute);
 router.use('/category', categoryRoute);
+router.use('/subcategory', subCategoryRoute);
 router.use('/brand', brandRoute);
 router.use('/product', productRoute);
 router.use('/new-stock', newStockRoute);
