@@ -57,8 +57,9 @@ export enum Units {
   BOOKLET = "booklet(s)"
 }
 
-export type NewStock = {
-  itemList: {
+export type ItemsList = {
+  userID: ObjectId;
+  lists: {
     productID: ObjectId;
     categoryID: ObjectId;
     brandID: ObjectId;
@@ -67,6 +68,11 @@ export type NewStock = {
     unit: Units;
     isInStock: boolean;
   }[]
+}
+
+export type NewStock = {
+  userID: ObjectId;
+  itemsListID: ObjectId;
 }
 
 export type ItemsInStock = {
