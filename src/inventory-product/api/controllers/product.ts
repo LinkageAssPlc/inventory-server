@@ -2,7 +2,8 @@ import { Types } from "mongoose";
 import { Request } from "express";
 
 import { AddProductDTO } from "../../DTOs/ProductDTO";
-import { AddProductService } from "../../services";
+import { AddProductNameDTO } from "../../DTOs/AddProductNameDTO";
+import { AddProductService, AddProductNameService } from "../../services";
 import { BaseController } from "../../../inventory-shared/api";
 
 
@@ -13,4 +14,12 @@ export class ProductController{
         const {status, message, data} = await AddProductService(ProductDTO)
         return {status, message, data};
     })
+
+    static addProductName = BaseController(async (request: Request) => {
+        const AddProductNameDTO = request.body as AddProductNameDTO;
+        AddProductNameDTO.userID = new Types.ObjectId(request.token._id);
+        const {status, message, data} = await AddProductNameService(AddProductNameDTO)
+        return {status, message, data};
+    })
+
 }

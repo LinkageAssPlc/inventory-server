@@ -4,8 +4,10 @@ import { Brand } from "./Brand"; //
 import { Category } from "./Category";
 import { SubCategory } from "./SubCategory";
 import { Product } from "./Product";
+import { ProductName } from "./ProductName";
 import { NewStock } from "./NewStock";
 import { StaffOrder } from "./StaffOrder";
+import { ItemsList } from "./ItemsList";
 
 
 export enum ModelNames {
@@ -14,9 +16,11 @@ export enum ModelNames {
     BRAND = 'brand',  
     CATEGORY = 'category',  
     PRODUCT = 'product',  
+    PRODUCTNAME = 'productname',  
     NEWSTOCK = 'newstock',  
     STAFFORDER = 'stafforder',  
-    SUBCATEGORY = 'subcategory'  
+    SUBCATEGORY = 'subcategory',  
+    ITEMSLIST = 'itemslist'  
 }
 
 export type ModelTypeMap = {
@@ -26,6 +30,8 @@ export type ModelTypeMap = {
     [ModelNames.CATEGORY]: Category,
     [ModelNames.SUBCATEGORY]: SubCategory,
     [ModelNames.PRODUCT]: Product,
+    [ModelNames.PRODUCTNAME]: ProductName,
     [ModelNames.NEWSTOCK]: NewStock,
     [ModelNames.STAFFORDER]: StaffOrder,
+    [ModelNames.ITEMSLIST]: ItemsList,
 }
