@@ -42,9 +42,19 @@ export type Brand = {
   name: string;
 }
 
+export type AddProductName = {
+  userID: ObjectId;
+  name: string;
+}
+
 export type Product = {
   userID: ObjectId;
-  name: string; 
+  name: string;
+  brandID: ObjectId;
+  categoryID: ObjectId;
+  quantity: number;
+  unit: Units;
+  isInStock: boolean;
 }
 
 export enum Units {

@@ -3,7 +3,7 @@ import httpStatus from "http-status";
 import { AddStaffOrderDTO } from "../DTOs/StaffOrderDTO";
 import { getUser } from "../../inventory-accounts/user/services";
 import { ProductModel } from "../../inventory-entities/Product";
-import { ItemsListModel } from "../../inventory-entities/ItemsList";
+// import { ItemsListModel } from "../../inventory-entities/ItemsList";
 import { Product } from "../../types/user";
 import { AddAllMongoDBFields } from "../../inventory-entities/mongodbFields";
 
@@ -46,18 +46,18 @@ export const AddStaffOrderService = async ({staffID, department, branch, inStock
     }
 
     //get the quantity and units
-    const itemLists = await ItemsListModel.find()
-    itemLists.map(async (itemList) => {
-        // console.log("ItemList: ", itemList.lists)
-        itemList.lists.map((item) => {
-            if (item.quantity >= 1) {
-                // const product = await ProductModel.findById(item.productID) 
-                // console.log(product?.name)
+    //const itemLists = await ItemsListModel.find()
+    // itemLists.map(async (itemList) => {
+    //     // console.log("ItemList: ", itemList.lists)
+    //     itemList.lists.map((item) => {
+    //         if (item.quantity >= 1) {
+    //             // const product = await ProductModel.findById(item.productID) 
+    //             // console.log(product?.name)
 
-                return item.productID
-            }
-        })
-    })
+    //             return item.productID
+    //         }
+    //     })
+    // })
     //get units
 
 
