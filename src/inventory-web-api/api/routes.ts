@@ -12,7 +12,7 @@ import { Request, Response, Router } from 'express';
  import brandRoute from '../../inventory-brand/api/routes';
  import productRoute from '../../inventory-product/api/routes/addProduct';
  import addProductNameRoute from '../../inventory-product/api/routes/addProductName';
- import itemsListRoute from '../../inventory-items-list/api/routes';
+ import newEntryRoute from '../../inventory-new-entry/api/routes';
  import staffOrderRoute from '../../inventory-staff-order/api/routes';
 
 
@@ -32,7 +32,7 @@ router.use('/subcategory', subCategoryRoute);
 router.use('/brand', brandRoute);
 router.use('/add-product', productRoute);
 router.use('/add-product-name', addProductNameRoute);
-router.use('/items-list', itemsListRoute);
+router.use('/new-entry', newEntryRoute);
 router.use('/staff-order', staffOrderRoute);
 
  
