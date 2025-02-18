@@ -1,8 +1,10 @@
-import { z } from 'zod';
+import { z } from "zod";
 
 // Define validation for all the env vars
 export const schema = z.object({
-  NODE_ENV: z.enum(['development', 'production', 'test']).default('development'),
+  NODE_ENV: z
+    .enum(["development", "production", "test"])
+    .default("development"),
 
   PORT: z.number().default(4500),
   SALTWORKER: z.number().default(12),
@@ -12,25 +14,41 @@ export const schema = z.object({
   API_DOCS: z.string().optional(),
 
   CLOUDINARY_API_KEY: z.string().nonempty("CLOUDINARY_API_KEY is required"),
-  CLOUDINARY_API_SECRET: z.string().nonempty("CLOUDINARY_API_SECRET is required"),
-  CLOUDINARY_CLOUD_NAME: z.string().nonempty("CLOUDINARY_CLOUD_NAME is required"),
+  CLOUDINARY_API_SECRET: z
+    .string()
+    .nonempty("CLOUDINARY_API_SECRET is required"),
+  CLOUDINARY_CLOUD_NAME: z
+    .string()
+    .nonempty("CLOUDINARY_CLOUD_NAME is required"),
 
-  // MONGOOSE_DEBUG: z.boolean().default(false).refine((val, ctx) => {
-  //   const nodeEnv = ctx.parent.NODE_ENV;
-  //   return (nodeEnv === 'development' && val === true) || (nodeEnv !== 'development' && val === false);
-  // }, {
-  //   message: "MONGOOSE_DEBUG must be true in development and false otherwise",
-  // }),
+  // MONGOOSE_DEBUG: z
+  //   .boolean()
+  //   .default(false)
+  //   .refine(
+  //     (val, ctx) => {
+  //       const nodeEnv = ctx.parent.NODE_ENV;
+  //       return (
+  //         (nodeEnv === "development" && val === true) ||
+  //         (nodeEnv !== "development" && val === false)
+  //       );
+  //     },
+  //     {
+  //       message:
+  //         "MONGOOSE_DEBUG must be true in development and false otherwise",
+  //     },
+  //   ),
 
-  MONGO_HOST: z.string()
+  MONGO_HOST: z
+    .string()
     .nonempty("MONGO_HOST is required")
-    .default('mongodb://localhost:27017/inventory')
-    .describe('Production Database host name'),
+    .default("mongodb://localhost:27017/inventory")
+    .describe("Production Database host name"),
 
-  MONGO_TEST: z.string()
+  MONGO_TEST: z
+    .string()
     .nonempty("MONGO_TEST is required")
-    .default('mongodb://localhost/perday')
-    .describe('Test Database host name'),
+    .default("mongodb://localhost/perday")
+    .describe("Test Database host name"),
 
   JWT_SECRET: z.string().nonempty("JWT_SECRET is required"),
   JWT_EXPIRY: z.string().nonempty("JWT_EXPIRY is required"),
@@ -44,10 +62,6 @@ export const schema = z.object({
   MAILDATAMESSAGEBODY: z.string().nonempty("MAILDATAMESSAGEBODY is required"),
   MAILDATAINFO: z.string().nonempty("MAILDATAINFO is required"),
 });
-
-
-
-
 
 // import { Joi } from 'celebrate';
 
@@ -73,7 +87,7 @@ export const schema = z.object({
 //     then: Joi.boolean().default(true),
 //     otherwise: Joi.boolean().default(false),
 //   }),
-  
+
 //   MONGO_HOST: Joi.string()
 //     .default('mongodb://localhost:27017/inventory')
 //     .description('Production Database host name')
