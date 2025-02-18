@@ -44,7 +44,8 @@ const UserSchema = new Schema(
       required: true 
     },
     department: {
-      type: String
+      type: String,
+      required: true
     },
     role: {
       type: String,
