@@ -1,13 +1,12 @@
 import {Schema, Document, model} from 'mongoose'
-import {ObjectId} from 'mongodb'
+import { ObjectId } from 'mongodb'
+import { Units } from '../types/user';
 import { ModelNames } from './models.names';
 
-import { Units } from '../types/user';
 
-
-export class NewStock extends Document {
+export class ItemsList extends Document {
     userID: ObjectId;
-    itemList: {
+    lists: {
         productID: ObjectId;
         categoryID: ObjectId;
         brandID: ObjectId;
@@ -18,10 +17,10 @@ export class NewStock extends Document {
     }[]
 }
 
-export const NewStockSchema = new Schema(
+export const ItemsListSchema = new Schema(
     {
         userID: {type: ObjectId, required: true, ref: ModelNames.USER},
-        itemList: [{
+        lists: [{
             productID: {type: ObjectId, required: true, ref: ModelNames.PRODUCT},
             categoryID: {type: ObjectId, required: true, ref: ModelNames.CATEGORY},
             brandID: {type: ObjectId, required: true, ref: ModelNames.BRAND},
@@ -32,9 +31,8 @@ export const NewStockSchema = new Schema(
         }],
     },
     {
-        timestamps: true
+        timestamps: true,
     }
-
 )
 
-export const NewStockModel = model<NewStock>(ModelNames.NEWSTOCK, NewStockSchema)
+export const ItemsListModel = model<ItemsList>(ModelNames.ITEMSLIST, ItemsListSchema)

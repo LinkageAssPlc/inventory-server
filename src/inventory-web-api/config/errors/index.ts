@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import httpStatus from 'http-status';
-import { isCelebrate } from 'celebrate';
+// import { isCelebrate } from 'celebrate';
 
 import { config } from '../env';
 import { ErrorResponseInterface, ExpressErrorInterface } from '../types';
@@ -36,7 +36,7 @@ const customError = () => {
     _next: NextFunction
   ) => {
     let convertedError: Error = error;
-    if (isCelebrate(error)) {
+    if ((error)) {
       convertedError = new APIError({
         message: 'Invalid fields',
         status: httpStatus.BAD_REQUEST,
