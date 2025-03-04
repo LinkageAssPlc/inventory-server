@@ -6,8 +6,8 @@ export const schema = z.object({
     .enum(["development", "production", "test"])
     .default("development"),
 
-  PORT: z.number().default(4500),
-  SALTWORKER: z.number().default(12),
+  PORT: z.string().default("4500"),
+  SALTWORKER: z.string().default("12"),
 
   HOST_URL: z.string().nonempty("HOST_URL is required"),
   ROOT_ENTRY: z.string().nonempty("ROOT_ENTRY is required"),
@@ -62,6 +62,30 @@ export const schema = z.object({
   MAILDATAMESSAGEBODY: z.string().nonempty("MAILDATAMESSAGEBODY is required"),
   MAILDATAINFO: z.string().nonempty("MAILDATAINFO is required"),
 });
+
+// export const schema = envSchema.parse({
+//   NODE_ENV: process.env.NODE_ENV,
+//   PORT: process.env.PORT,
+//   SALTWORKER: process.env.SALTWORKER,
+//   HOST_URL: process.env.HOST_URL,
+//   ROOT_ENTRY: process.env.ROOT_ENTRY,
+//   API_DOCS: process.env.API_DOCS,
+//   CLOUDINARY_API_KEY: process.env.CLOUDINARY_API_KEY,
+//   CLOUDINARY_API_SECRET: process.env.CLOUDINARY_API_SECRET,
+//   CLOUDINARY_CLOUD_NAME: process.env.CLOUDINARY_CLOUD_NAME,
+//   MONGO_HOST: process.env.MONGO_HOST,
+//   MONGO_TEST: process.env.MONGO_TEST,
+//   JWT_SECRET: process.env.JWT_SECRET,
+//   JWT_EXPIRY: process.env.JWT_EXPIRY,
+//   SERVER_PUBLIC_TOKEN: process.env.SERVER_PUBLIC_TOKEN,
+// SENDGRID_API_KEY: process.env.SENDGRID_API_KEY,
+// QUICK_TWEETS_MAIL: process.env.QUICK_TWEETS_MAIL,
+// MAILDATASENDER: process.env.MAILDATASENDER,
+// MAILDATARECIPIENT: process.env.MAILDATARECIPIENT,
+// MAILDATASUBJECT: process.env.MAILDATASUBJECT,
+// MAILDATAMESSAGEBODY: process.env.MAILDATAMESSAGEBODY,
+// MAILDATAINFO: process.env.MAILDATAINFO,
+// })
 
 // import { Joi } from 'celebrate';
 

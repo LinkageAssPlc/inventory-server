@@ -6,10 +6,14 @@ dotEnv.config();
 
 // validate environment variables
 const envVarsSchema = Validate(schema);
-
+// console.log("envVarsSchema: ",envVarsSchema)
+// console.log("Validate ",Validate)
+// console.log(process.env)
 const parsed = envVarsSchema(process.env);
+// console.log("parsed: ", parsed)
+
 if (!parsed) throw new Error("Environment variables are not valid");
-const envVariables = parsed.data!;
+const envVariables = parsed;
 // const { error, value: envVariables } = envVarsSchema(process.env);
 // if (error) throw new Error(`Config validation error: ${error.message}`);
 

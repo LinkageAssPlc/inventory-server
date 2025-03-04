@@ -18,7 +18,7 @@ export class AuthController {
     const {status, message, data} = await singUpService(CreateUserDTO);
     return {status, message, data};
   });
-
+  
   static signIn = BaseController(async (request: Request) => {
     const SignInUserDTO = request.body as SignInUserDTO;
     const {status, message, data, token} = await singInService(SignInUserDTO);
@@ -52,4 +52,4 @@ export class AuthController {
     const {status, message, data} = await forgotPasswordService(ForgotPasswordDTO);
     return {status, message, data};
   })   
-}
+ }

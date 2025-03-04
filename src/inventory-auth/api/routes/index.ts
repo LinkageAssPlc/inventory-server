@@ -1,4 +1,5 @@
 import AuthValidation from "../validations";
+//  import {signUpSchema} from "../validations"
 import { AuthController } from "../controllers";
 import { AuthMiddleware } from "../../middlewares/authMiddleware";
 import { baseRouter } from "../../../inventory-shared/api/baseRouter";

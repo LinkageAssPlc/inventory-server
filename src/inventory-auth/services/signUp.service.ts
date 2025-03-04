@@ -19,7 +19,7 @@ export const singUpService = async ({firstname, lastname, department, email, pas
   if (password !== confirmPassword){
     return {success: false, status: httpStatus.BAD_REQUEST, message: `Passwords don't match`, data: null};
   }
-  const hashedPassword = await bcrypt.hash(password, config.saltWorker);
+  const hashedPassword = await bcrypt.hash(password, Number(config.saltWorker));
   const newUser = await UserModel.create({firstname, lastname, email, password: hashedPassword, department});
   return {success: true, status: httpStatus.CREATED, message: 'New user created', data: newUser};
 };
