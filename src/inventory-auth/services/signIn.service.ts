@@ -18,7 +18,9 @@ export const singInService = async ({email, password}: SignInUserDTO) => {
   }
 
   const {role, _id} = user;
-  const token = await issueToken({role, _id, email})
+  console.log('User role from database:', role);
+  const token = await issueToken({role, _id, email});
+  console.log('Token payload:', {role, _id, email});
 
   return {success: true, status: httpStatus.OK, message: 'Login Successful', data: user, token};
 };

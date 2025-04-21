@@ -10,9 +10,15 @@ type AccessControlType = {Roles: multRoles, token? : UserTokenType};
 export const accessControl = ({Roles, token}: AccessControlType) => {
   return async function(request: Request, response: Response, next: NextFunction) {
     const role = token? token.role : request.token.role;
-    // console.log("Middleware Role:", role)
-    // console.log("Roles: ", Roles)
-    const accessGranted = Roles.some(userRole => role === userRole);
+    // console.log('Access Control - Current user role:', role);
+    // console.log('Access Control - Required roles:', Roles);
+    
+    // Case-insensitive role comparison
+    const accessGranted = Roles.some(userRole => 
+      role.toLowerCase() === userRole.toLowerCase()
+    );
+    // console.log('Access Control - Access granted:', accessGranted);
+
     if (!accessGranted) {
       return response.status(httpStatus.UNAUTHORIZED).json(
         sendResponse(

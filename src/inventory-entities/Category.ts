@@ -10,7 +10,7 @@ export class Category extends Document {
 export const CategorySchema = new Schema(
     {
         userID: {type: ObjectId, required: true, ref: ModelNames.USER},
-        name: {type: String, required: true, trim: true},
+        name: {type: String, required: true, trim: true, index: {unique: true, collation: {locale: "en", strength: 2}}}
     },
     {
         timestamps: true

@@ -51,7 +51,7 @@ const UserSchema = new Schema(
       type: String,
       trim: true,
       lowercase: true,
-      enum: [Role.USER],
+      enum: [Role.USER, Role.ADMIN],
       default: Role.USER
     },
     profile_photo: {
