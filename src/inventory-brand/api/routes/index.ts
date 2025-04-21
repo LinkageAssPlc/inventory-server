@@ -1,4 +1,4 @@
-import CategoryValidation from "../validations";
+import BrandValidation from "../validations";
 import { baseRouter, baseValidation } from "../../../inventory-shared/api";
 
 import { BrandController } from "../controllers/brand";
@@ -6,6 +6,6 @@ import { AuthMiddleware } from "../../../inventory-auth/middlewares/authMiddlewa
 
 const {POST, router} = baseRouter();
 
-POST("/", [baseValidation(CategoryValidation.brand), AuthMiddleware.baseAuthToken, AuthMiddleware.IsUserMiddleware, BrandController.addBrand]);
+POST("/", [baseValidation(BrandValidation.brand), AuthMiddleware.baseAuthToken, AuthMiddleware.IsAdminMiddleware, BrandController.addBrand]);
 
 export default router;

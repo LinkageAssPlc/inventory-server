@@ -9,6 +9,10 @@ export class AuthMiddleware {
       {Roles: [Role.USER], token});
   static IsUserMiddleware = AuthMiddleware.IsUser();
 
+  static IsAdmin = (token?: UserTokenType) => accessControl(
+    {Roles: [Role.ADMIN], token});
+static IsAdminMiddleware = AuthMiddleware.IsAdmin();
+
   static baseAuthToken = authTokenService({
     authPolicy: headerBearerToken,
     allowExternalAccess: false

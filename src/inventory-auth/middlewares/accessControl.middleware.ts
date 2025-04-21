@@ -10,10 +10,11 @@ type AccessControlType = {Roles: multRoles, token? : UserTokenType};
 export const accessControl = ({Roles, token}: AccessControlType) => {
   return async function(request: Request, response: Response, next: NextFunction) {
     const role = token? token.role : request.token.role;
-
+    // console.log("Middleware Role:", role)
+    // console.log("Roles: ", Roles)
     const accessGranted = Roles.some(userRole => role === userRole);
     if (!accessGranted) {
-      return response.json(
+      return response.status(httpStatus.UNAUTHORIZED).json(
         sendResponse(
           httpStatus.UNAUTHORIZED,
           'You are not Authorized to perform this operation!',

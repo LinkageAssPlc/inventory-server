@@ -1,29 +1,13 @@
 // import { Joi } from 'celebrate';
 import { z } from "zod";
 
-// export const signUpSchema = z.object({
-//   body: z.object({
-//     firstname: z.string().nonempty(),
-//     lastname: z.string().nonempty(),
-//     department: z.string().nonempty(),
-//     email: z.string().email().nonempty(),
-//     password: z.string().min(8).nonempty(),
-//     confirmPassword: z.string().min(8).nonempty(),
-//   }),
-// });
-
-// export const signInSchema = z.object({
-//   email: z.string(),
-//   password: z.string().min(8),
-// });
-
 // Reusable schemas
 const emailSchema = z.string().email("Invalid email format").transform(val => val.trim().toLowerCase());
 const passwordSchema = z.string()
   .min(9, "Password must be at least 9 characters")
-  .regex(/[A-Z]/, "Password contain at least one uppercase letter")
-  .regex(/[a-z]/, "Password contain at least one lowercase letter")
-  .regex(/[0-9]/, "Password contain at least one number")
+  .regex(/[A-Z]/, "Password must contain at least one uppercase letter")
+  .regex(/[a-z]/, "Password must contain at least one lowercase letter")
+  .regex(/[0-9]/, "Password must contain at least one number")
   .transform(val => val.trim());
 
 // const otpSchema = z.string()
@@ -31,16 +15,6 @@ const passwordSchema = z.string()
 //   .regex(/^\d+$/, "OTP must contain only numbers");
 
 export default {
-  // signUp: {
-  //   body: z.object({
-  //     firstname: z.string().min(2).max(20),
-  //     lastname: z.string().min(2).max(20),
-  //     department: z.string(),
-  //     email: z.string().email(),
-  //     password: z.string().min(9),
-  //     confirmPassword: z.string().min(9),
-  //   }),
-  // },
   signUp: {
     body: z.object({
       firstname: z.string()
@@ -62,8 +36,8 @@ export default {
   },
   signIn: {
     body: z.object({
-      email: z.string(),
-      password: z.string().min(8),
+      email: emailSchema,
+      password: passwordSchema,
     }),
   },
   sendOTP: {

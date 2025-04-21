@@ -11,7 +11,7 @@ export class Brand extends Document {
 const BrandSchema = new Schema (
     {
         userID: {type: String, required: true, ref: ModelNames.USER},
-        name: {type: String, required: true, trim: true}
+        name: {type: String, required: true, trim: true, index: {unique: true, collation: {locale: "en", strength: 2}}}
     },
     {
         timestamps: true

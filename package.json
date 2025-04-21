@@ -34,6 +34,7 @@
     "dateformat": "https://github.com/mcollina/dateformat",
     "debug": "^4.3.4",
     "dotenv": "^16.0.0",
+    "escape-string-regexp-node": "^1.0.2",
     "express": "^4.17.3",
     "express-validator": "^7.2.1",
     "express-zod-safe": "^1.3.3",
