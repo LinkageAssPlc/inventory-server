@@ -10,7 +10,7 @@ export default {
   },
   editBrand: {
     params: z.object({
-      brandId: z.string()
+      brandID: z.string()
         .length(24, { message: "Brand ID must be a 24 character hex string" })
     }),
     body: z.object({

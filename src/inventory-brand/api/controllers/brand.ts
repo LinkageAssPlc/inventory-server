@@ -1,5 +1,6 @@
 import { Types } from "mongoose";
 import { Request } from "express";
+import httpStatus from "http-status";
 
 import { AddBrandDTO } from "../../DTOs/BrandDTO";
 import { addBrandService, getBrandsService, editBrandService } from "../../services";
@@ -20,9 +21,40 @@ export class BrandController{
     })
 
     static editBrand = BaseController(async (request: Request) => {
-        const brandID = request.params.brandId;
+        // Try to extract brand ID from multiple possible locations
+        let brandID = request.params.brandID;
+        
+        // Extract from URL path if not found in params
+        if (!brandID) {
+            const pathParts = request.path.split('/');
+            brandID = pathParts[pathParts.length - 1];
+            // console.log("Extracted brandID from path:", brandID);
+        }
+        
+        // Extract from originalUrl if still not found
+        if (!brandID || brandID === "") {
+            const urlParts = request.originalUrl.split('/');
+            brandID = urlParts[urlParts.length - 1];
+            console.log("Extracted brandID from originalUrl:", brandID);
+        }
+        
+        // Validate if brandID is present
+        if (!brandID || brandID === "") {
+            return {
+                status: httpStatus.BAD_REQUEST,
+                message: "Brand ID is required",
+                data: null
+            };
+        }
+        
         const { name } = request.body;
         const userID = new Types.ObjectId(request.token._id);
+        
+        console.log("Edit Brand Controller - Final values:", { 
+            brandID, 
+            name, 
+            userID: userID.toString() 
+        });
         
         const {status, message, data} = await editBrandService({
             brandID,
