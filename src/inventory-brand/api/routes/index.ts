@@ -7,7 +7,7 @@ import { AuthMiddleware } from "../../../inventory-auth/middlewares/authMiddlewa
 const {POST, GET, PUT, DELETE, router} = baseRouter();
 
 POST("/", [baseValidation(BrandValidation.brand), AuthMiddleware.baseAuthToken, AuthMiddleware.IsAdminMiddleware, BrandController.addBrand]);
-GET("/", [AuthMiddleware.baseAuthToken, BrandController.getBrands]);
+GET("/", [AuthMiddleware.baseAuthToken, AuthMiddleware.IsAdminMiddleware, BrandController.getBrands]);
 PUT("/:brandID", [AuthMiddleware.baseAuthToken, AuthMiddleware.IsAdminMiddleware, BrandController.editBrand]);
 DELETE("/:brandID", [AuthMiddleware.baseAuthToken, AuthMiddleware.IsAdminMiddleware, BrandController.deleteBrand]);
 export default router;
