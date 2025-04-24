@@ -3,7 +3,7 @@ import { Request } from "express";
 import httpStatus from "http-status";
 
 import { AddBrandDTO } from "../../DTOs/BrandDTO";
-import { addBrandService, getBrandsService, editBrandService } from "../../services";
+import { addBrandService, getBrandsService, editBrandService, deleteBrandService } from "../../services";
 import { BaseController } from "../../../inventory-shared/api";
 
 
@@ -28,7 +28,7 @@ export class BrandController{
         if (!brandID) {
             const pathParts = request.path.split('/');
             brandID = pathParts[pathParts.length - 1];
-            // console.log("Extracted brandID from path:", brandID);
+            console.log("Extracted brandID from path:", brandID);
         }
         
         // Extract from originalUrl if still not found
@@ -59,6 +59,31 @@ export class BrandController{
         const {status, message, data} = await editBrandService({
             brandID,
             name,
+            userID
+        });
+        
+        return {status, message, data};
+    })
+
+    static deleteBrand = BaseController(async (request: Request) => {
+        console.log("Delete Brand Controller - Request params:", request.params);
+        
+        // Get brand ID from params
+        let brandID = request.params.brandID;
+        
+        // Validate if brandID is present
+        if (!brandID) {
+            return {
+                status: httpStatus.BAD_REQUEST,
+                message: "Brand ID is required",
+                data: null
+            };
+        }
+        
+        const userID = new Types.ObjectId(request.token._id);
+        
+        const {status, message, data} = await deleteBrandService({
+            brandID,
             userID
         });
         

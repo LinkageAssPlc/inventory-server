@@ -18,5 +18,11 @@ export default {
         .min(2, { message: "Name must be at least 2 characters" })
         .max(24, { message: "Name cannot exceed 24 characters" })
     })
+  },
+  deleteBrand: {
+    params: z.object({
+      brandId: z.string()
+        .length(24, { message: "Brand ID must be a 24 character hex string" })
+    })
   }
 };
