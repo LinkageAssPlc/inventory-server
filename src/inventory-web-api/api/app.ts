@@ -26,7 +26,16 @@ app.use(methodOverride());
 
 // allow cross origin requests
 // configure to only allow requests from certain origins
-app.use(cors({ credentials: true, origin: true }));
+// app.use(cors({ credentials: true, origin: true }));
+app.use(cors({
+  origin: process.env.NODE_ENV === 'production'
+  ? process.env.FRONTEND_PROD_URL
+  : process.env.FRONTEND_DEV_URL,
+  methods: process.env.ALLOWED_METHODS?.split(','),
+  allowedHeaders: process.env.ALLOWED_HEADERS?.split(','),
+  credentials: true,
+  maxAge: 86400 //24-hour preflight cache,
+}))
 app.use(cookieParser());
 
 // parse body params and attach them to res.body

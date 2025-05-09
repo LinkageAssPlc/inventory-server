@@ -42,9 +42,19 @@ export type Brand = {
   name: string;
 }
 
+export type AddProductName = {
+  userID: ObjectId;
+  name: string;
+}
+
 export type Product = {
   userID: ObjectId;
-  name: string; 
+  name: string;
+  brandID: ObjectId;
+  categoryID: ObjectId;
+  quantity: number;
+  unit: Units;
+  isInStock: boolean;
 }
 
 export enum Units {
@@ -57,8 +67,9 @@ export enum Units {
   BOOKLET = "booklet(s)"
 }
 
-export type NewStock = {
-  itemList: {
+export type ItemsList = {
+  userID: ObjectId;
+  lists: {
     productID: ObjectId;
     categoryID: ObjectId;
     brandID: ObjectId;
@@ -67,6 +78,11 @@ export type NewStock = {
     unit: Units;
     isInStock: boolean;
   }[]
+}
+
+export type NewStock = {
+  userID: ObjectId;
+  itemsListID: ObjectId;
 }
 
 export type ItemsInStock = {

@@ -1,14 +1,17 @@
-import dotEnv from 'dotenv';
-import { schema } from './schema';
-import { Validate } from './validators'
-import { ConfigTypes } from '../types';
+import dotEnv from "dotenv";
+import { schema } from "./schema";
+import { Validate } from "./validators";
+import { ConfigTypes } from "../types";
 dotEnv.config();
 
 // validate environment variables
 const envVarsSchema = Validate(schema);
 
-const { error, value: envVariables } = envVarsSchema.validate(process.env);
-if (error) throw new Error(`Config validation error: ${error.message}`);
+const parsed = envVarsSchema(process.env);
+if (!parsed) throw new Error("Environment variables are not valid");
+const envVariables = parsed.data!;
+// const { error, value: envVariables } = envVarsSchema(process.env);
+// if (error) throw new Error(`Config validation error: ${error.message}`);
 
 export const config: ConfigTypes = {
   env: envVariables.NODE_ENV,
@@ -24,23 +27,23 @@ export const config: ConfigTypes = {
   },
   mongo: {
     mongooseDebug: envVariables.MONGOOSE_DEBUG,
-    mongoUri: envVariables.MONGO_HOST || 'mongodb://localhost:27017/inventory',
+    mongoUri: envVariables.MONGO_HOST || "mongodb://localhost:27017/inventory",
     mongoTestUri: envVariables.MONGO_TEST,
   },
   token: {
-    jwtSecret: envVariables.JWT_SECRET || 'secret',
+    jwtSecret: envVariables.JWT_SECRET || "secret",
     jwtExpirationInterval: envVariables.JWT_EXPIRY,
-    serverPublicToken: envVariables.SERVER_PUBLIC_TOKEN || 'public_secret',
+    serverPublicToken: envVariables.SERVER_PUBLIC_TOKEN || "public_secret",
   },
   mail: {
     quickTweetsMail: envVariables.DIONMAIL,
-    from : envVariables.MAILDATASENDER,
-    to : envVariables.MAILDATARECIPIENT,
-    subject : envVariables.MAILDATASUBJECT,
-    text : envVariables.MAILDATAMESSAGEBODY,
-    other : envVariables.MAILDATAINFO,
+    from: envVariables.MAILDATASENDER,
+    to: envVariables.MAILDATARECIPIENT,
+    subject: envVariables.MAILDATASUBJECT,
+    text: envVariables.MAILDATAMESSAGEBODY,
+    other: envVariables.MAILDATAINFO,
     sendgrid: {
       key: envVariables.SENDGRID_API_KEY,
-    }
+    },
   },
 };

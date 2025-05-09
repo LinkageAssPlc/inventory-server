@@ -5,9 +5,9 @@ import { toObjectId } from "../../../inventory-shared/validateAndConvertToObject
 
 
 export default{
-    newStock: {
+    itemsList: {
         body: Joi.object({
-            itemList: Joi.array().items(
+            lists: Joi.array().items(
                 Joi.object({
                     productID: Joi.string().min(24).max(24).custom(toObjectId),
                     categoryID: Joi.string().min(24).max(24).custom(toObjectId),
